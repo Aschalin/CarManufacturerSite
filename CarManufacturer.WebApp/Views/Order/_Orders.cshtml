@@ -1,0 +1,44 @@
+﻿@model CarManufacturer.WebApp.ViewModels.OrdersViewModel
+
+
+<div id="OrdersList">
+    @foreach (var order in Model.Orders)
+            {
+        <div class="row">
+            <div class="col col-md-2">
+                @Html.DisplayFor(modelItem => order.Car.Name)
+            </div>
+            <div class="col col-md-2">
+                @Html.DisplayFor(modelItem => order.Car.SelectedEngine.FullName);
+            </div>
+            <div class="col col-md-2">
+                @Html.DisplayFor(modelItem => order.Quantity)
+            </div>
+            <div class="dropdown col col-md-2">
+                @if (order.SelectedAccessories.Count > 0)
+                {
+                <strong>Accesories</strong>
+                <div class="dropdown-list">
+                    @foreach (var accesory in order.SelectedAccessories.Select(x => x.Name))
+                    {
+                        <div>@accesory</div>
+                    }
+                </div>
+                }
+                else
+                {
+                    <div>None</div>
+                }
+            </div>
+            <div class="dropdown col col-md-2">
+                <strong>@Html.DisplayFor(modelItem => order.OverallPrice)$</strong>
+                <div class="dropdown-list">
+                    @Html.DisplayFor(modelItem => order.Quantity) x @Html.DisplayFor(modelItem => order.UnitPrice)$
+                </div>
+            </div>
+            <div class="col col-md-2">
+                @Html.DisplayFor(modelItem => order.Buyer.Name)
+            </div>
+        </div>
+    }
+</div>

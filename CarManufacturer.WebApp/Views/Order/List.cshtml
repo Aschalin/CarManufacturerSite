@@ -1,0 +1,85 @@
+﻿@model CarManufacturer.WebApp.ViewModels.OrdersViewModel
+<div class="container">
+    <div class="row">
+        <div class="col col-md-2-md-10">
+            <div class="formWraper" class="col col-md-2-md-10">
+                @using (Ajax.BeginForm(
+                    new AjaxOptions
+                    {
+                        HttpMethod = "get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "OrdersList"
+                    }))
+                {
+                    <div class="row">
+                        <div class="dropdown col col-md-2">
+                            <div class="btn btn-default">Model</div>
+                            <div class="dropdown-list">
+                                <select class="filter" id="modelFilter" name="carModels" multiple>
+                                    @foreach (Model option in Model.AvailableModels)
+                                    {
+                                        <option value="@option.Id">@option.Name</option>
+                                    }
+                                </select>
+                                <select class="filter" id="bodyFilter" name="carBodys" multiple>
+                                    @foreach (var option in Enum.GetValues(typeof(BodyType)).Cast<BodyType>())
+                                    {
+                                        <option value="@option">@option</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="dropdown col col-md-2">
+                            <div class="btn btn-default">Engine</div>
+                            <div class="dropdown-list">
+                                <select class="filter" id=" engineFilter" name="carEngines" multiple>
+                                    @foreach (Engine option in Model.AvailableEngines)
+                                    {
+                                        <option value="@option.Id">@option.FullName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="dropdown col col-md-2">
+                            <div class="btn btn-default">Quantity</div>
+                            <div class="dropdown-list">
+                                <div class="col-xs-5">
+                                    <label>Min:</label>
+                                    <input class="filter" type="number" name="minQuantity" />
+                                </div>
+                                <div class="col-xs-5">
+                                    <label>Max:</label>
+                                    <input class="filter" type="number" name="maxQuantity" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn btn-default col col-md-2">Accesories</div>
+                        <div class="dropdown col col-md-2">
+                            <div class="btn btn-default">Price</div>
+                            <div class="dropdown-list">
+                                <div class="col-xs-5">
+                                    <label>Min:</label>
+                                    <input class="filter" type="number" name="minPrice" />
+                                </div>
+                                <div class="col-xs-5">
+                                    <label>Max:</label>
+                                    <input class="filter" type="number" name="maxPrice" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn btn-default col col-md-2">Buyer</div>
+                        @*<input class="btn btn-default  col col-md-2" type="submit" value="search" />*@
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+                @Html.Partial("_Orders", Model)
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/Bundles/searchFilters")
+}
