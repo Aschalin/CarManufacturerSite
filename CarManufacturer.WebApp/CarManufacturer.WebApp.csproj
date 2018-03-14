@@ -163,8 +163,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Buyer.cs" />
-    <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\IOrdersService.cs" />
     <Compile Include="Services\OrdersServiceMock.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
