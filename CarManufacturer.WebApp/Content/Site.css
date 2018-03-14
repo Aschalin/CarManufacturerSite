@@ -58,10 +58,15 @@ div#OrderList
     display: block;
 }
 
-#OrderList .row:nth-of-type(even) {
+#OrdersList .row:nth-of-type(even) {
     background-color: #fff;
 }
 
-#OrderList .row:nth-of-type(odd) {
+#OrdersList .row:nth-of-type(odd) {
     background-color: #ddd;
+}
+
+#OrdersList {
+    margin-left: 15px;
+    margin-right: 15px;
 }

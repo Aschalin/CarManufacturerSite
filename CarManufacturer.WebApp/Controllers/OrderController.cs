@@ -20,20 +20,14 @@ namespace CarManufacturer.WebApp.Controllers
         public ActionResult List(string[] carModels, string[] carBodys, string[] carEngines, int? minQuantity, int? maxQuantity, int? minPrice, int? maxPrice)
         {
             OrdersViewModel model = new OrdersViewModel();
-            model.Orders = _service.GetOrders(carModels, carBodys, carEngines,minQuantity, maxQuantity, minPrice, maxPrice);
+            model.Orders = _service.GetOrders(carModels, carBodys, carEngines, minQuantity, maxQuantity, minPrice, maxPrice);
             model.AvailableModels = _service.GetModels();
             model.AvailableEngines = _service.GetEngines();
-            if(Request.IsAjaxRequest())
+            if (Request.IsAjaxRequest())
             {
                 return PartialView("_Orders", model);
             }
             return View(model);
-        }
-
-        [ChildActionOnly]
-        public ActionResult Search()
-        {
-            return View();
         }
     }
 }
